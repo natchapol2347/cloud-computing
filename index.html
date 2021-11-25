@@ -21,6 +21,45 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+
+        <style>
+            .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            }
+
+
+            .dropdown {
+            position: relative;
+            top: -18px;
+            display: inline-block;
+            }
+
+            .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f3f3f3;
+            min-width: 445px;
+            overflow: auto;
+            border: 1px solid #ddd;
+            z-index: 1;
+            }
+
+            .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            }
+
+            .dropdown a:hover {background-color: #ddd;}
+
+            .show {display: block;}
+        </style>
     </head>
 
     <body>
@@ -53,12 +92,23 @@
                             </a>
                         </div>
                     </div>
+                    <!-- Search bar -->
                     <div class="col-md-6">
                         <div class="search">
-                            <input type="text" placeholder="Search">
+                            <input id="Search_Input" type="text" placeholder="Search" onkeyup="filterFunction()" onclick="myFunction()">
                             <button><i class="fa fa-search"></i></button>
+                            <div class="dropdown">
+                                <div id="myDropdown" class="dropdown-content">
+                                    <a href="#Music">Music</a>
+                                    <a href="#Architecture">Architecture</a>
+                                    <a href="#Science">Science</a>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
+                    
+
                     <div class="col-md-3">
                         <div class="user">
                             <a href="wishlist.html" class="btn wishlist">
@@ -161,7 +211,9 @@
                 </div>
             </div>
         </div>
-        <!-- Main Slider End -->      
+        <!-- Main Slider End -->
+
+             
         
         <!-- Brand Start -->
         <div class="brand">
@@ -661,10 +713,37 @@
             </div>
         </div>
         <!-- Footer End -->
+
+        
         
         
         <!-- Back to Top -->
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <!-- Script for Search bar -->
+        <script>
+            function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            function filterFunction() {
+                var input, filter, ul, li, a, i;
+                input = document.getElementById("Search_Input");
+                filter = input.value.toUpperCase();
+                div = document.getElementById("myDropdown");
+                a = div.getElementsByTagName("a");
+                for (i = 0; i < a.length; i++) {
+                    txtValue = a[i].textContent || a[i].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                    } else {
+                    a[i].style.display = "none";
+                    }
+                }
+            }
+
+            
+        </script>
         
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -674,5 +753,7 @@
         
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+
+        
     </body>
 </html>
